@@ -1,3 +1,4 @@
+package baekjoon.dp;
 import java.io.*;
 
 /* 정수 4를 1, 2, 3의 합으로 나타내는 방법은 총 3가지가 있다. 
