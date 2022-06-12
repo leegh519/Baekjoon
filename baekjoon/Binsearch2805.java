@@ -26,15 +26,14 @@ public class Binsearch2805 {
 		}
 
 		int start = 0, cut = 0, end = 0;
-		int ans=0;
+		int ans = 0;
 		long sum;
 		end = max;
 
-		while (start<=end) {
+		while (start <= end) {
 			cut = (start + end) / 2;
 			sum = 0;
-			
-			
+
 			/*
 			 * if ((end - start) <= 1) { for (int i = 0; i < n; i++) { if (h[i] - end > 0) {
 			 * sum += (h[i] - end); } } //System.out.println(start + " " + cut + " " + end +
@@ -42,8 +41,7 @@ public class Binsearch2805 {
 			 * 
 			 * if (sum >= m) { cut = end; break; } else { break; } }
 			 */
-			
-			
+
 			for (int i = 0; i < n; i++) {
 				if (h[i] - cut > 0) {
 					sum += (h[i] - cut);
@@ -51,12 +49,11 @@ public class Binsearch2805 {
 			}
 			if (sum < m) {
 				end = cut - 1;
-			} 
-			else {
-				if(ans<cut) {				// sum==mÀÌ ÃÖ¼Ú°ªÀÏ °æ¿ì¸¦ À§ÇØ ans¿¡ cutÀ» ÀúÀåÇØµÒ
-					ans=cut;				// µû·Î ¹İº¹¹® Á¾·áÁ¶°ÇÀ» ¸¸µé¾îÁÙ ÇÊ¿ä ¾ø¾î¼­ ´õ ³ªÀºµí
+			} else {
+				if (ans < cut) { // sum==mì´ ìµœì†Ÿê°’ì¼ ê²½ìš°ë¥¼ ìœ„í•´ ansì— cutì„ ì €ì¥í•´ë‘ 
+					ans = cut; // ë”°ë¡œ ë°˜ë³µë¬¸ ì¢…ë£Œì¡°ê±´ì„ ë§Œë“¤ì–´ì¤„ í•„ìš” ì—†ì–´ì„œ ë” ë‚˜ì€ë“¯
 				}
-				start = cut+1;
+				start = cut + 1;
 			}
 
 		}

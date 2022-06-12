@@ -4,62 +4,62 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 
-/* ¹éÁØ 1654¹ø ¹®Á¦ ·£¼±ÀÚ¸£±â
- * ±æÀÌ°¡ ´Ù¾çÇÑ k°³ÀÇ ·£¼±À» Àß¶ó n°³ÀÇ ·£¼±À» ¸¸µé¶§ 
- * ¸¸µé¼ö ÀÖ´Â ·£¼±ÀÇ ÃÖ´ë ±æÀÌ ±¸ÇÏ±â
- * 1ºÎÅÍ k°³ÀÇ ·£¼±Áß Á© ±ä ·£¼±±æÀÌ¸¦ ¹üÀ§·Î ÀÌÁøÅ½»öÀ¸·Î Ã£±â
+/* ë°±ì¤€ 1654ë²ˆ ë¬¸ì œ ëœì„ ìë¥´ê¸°
+ * ê¸¸ì´ê°€ ë‹¤ì–‘í•œ kê°œì˜ ëœì„ ì„ ì˜ë¼ nê°œì˜ ëœì„ ì„ ë§Œë“¤ë•Œ 
+ * ë§Œë“¤ìˆ˜ ìˆëŠ” ëœì„ ì˜ ìµœëŒ€ ê¸¸ì´ êµ¬í•˜ê¸°
+ * 1ë¶€í„° kê°œì˜ ëœì„ ì¤‘ ì ¤ ê¸´ ëœì„ ê¸¸ì´ë¥¼ ë²”ìœ„ë¡œ ì´ì§„íƒìƒ‰ìœ¼ë¡œ ì°¾ê¸°
  * 
  */
 
 public class Binsearch1654 {
 
-	public static void main(String[] args) throws NumberFormatException, IOException {
+   public static void main(String[] args) throws NumberFormatException, IOException {
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+      StringTokenizer st = new StringTokenizer(br.readLine());
 
-		int k = Integer.parseInt(st.nextToken());
-		long n = Long.parseLong(st.nextToken());
-		long[] c = new long[k];
-		long max = 0;
-		long left = 1, right, key = 0;
+      int k = Integer.parseInt(st.nextToken());
+      long n = Long.parseLong(st.nextToken());
+      long[] c = new long[k];
+      long max = 0;
+      long left = 1, right, key = 0;
 
-		for (int i = 0; i < c.length; i++) { // c.length¶û kÀÌ¶û ½Ã°£Â÷ÀÌ³ª´ÂÁö È®ÀÎÇØº¸ÀÚ
-			c[i] = Integer.parseInt(br.readLine());
-			if (c[i] >= max) {
-				max = c[i];
-			}
-		}
-		right = max;
+      for (int i = 0; i < c.length; i++) { 
+         c[i] = Integer.parseInt(br.readLine());
+         if (c[i] >= max) {
+            max = c[i];
+         }
+      }
+      right = max;
 
-		while (left <= right) {			// left, right, key°ªÀÌ °°Àº °æ¿ì È®ÀÎÇØ¾ßÇÔ.
-			key = (left + right) / 2;
-			long sum = 0;					// ±æÀÌ°¡ 1Â¥¸® ·£¼±ÀÇ °æ¿ì sumÀÌ int·Î ºÎÁ·ÇÔ.
-			
-			for (int i = 0; i < c.length; i++) {		// ·£¼±ÀÇ ±æÀÌ°¡ key°ªÀÏ¶§ ¸¸µé¼ö ÀÖ´Â ·£¼±ÀÇ °¹¼ö
-				sum += (c[i] / key);
-			}
-			
-			
-			if ((right-left) <= 1) {							// ¾Æ·¡ Á¶°Ç¿¡¼­ left = key·Î ¼³Á¤Çß±â¶§¹®¿¡ Á¾·áÁ¶°ÇÀ» ¼³Á¤ÇØÁà¾ßÇÔ.
-				int sumr = 0;
-				for (int i = 0; i < c.length; i++) {		// left¿Í right°ªÀÌ °°°Å³ª 1Â÷ÀÌ ÀÏ¶§ 
-					sumr += (c[i] / right);
-				}
-				if (n <= sumr) {								// right¸¦ Å°°ªÀ¸·Î ÇßÀ»¶§ Á¶°ÇÀ» ¸¸Á·ÇÏ¸é 
-					key = right;								// Å°°ª¿¡ right¸¦ ³Ö°í Å½»öÁ¾·á
-					break;	
-				}
-				break;											// right°¡ Á¶°ÇÀ» ¸¸Á·ÇÏÁö ¾ÊÀ¸¸é key°ª ±×´ë·Î Å½»öÁ¾·á
-			}
-			
-			if (sum < n) {				// ¸¸µé¼ö ÀÖ´Â ·£¼±ÀÇ °¹¼ö°¡ ÇÊ¿äÇÑ °¹¼öº¸´Ù ÀûÀ»°æ¿ì
-				right = key - 1;		// ¿ŞÂÊ ¹üÀ§¿¡ ´ëÇØ ´Ù½Ã Å½»ö, ·£¼±ÀÇ ±æÀÌ¸¦ ÁÙ¿© °¹¼ö ´Ã¸®±â
-			} else if (sum >= n) {		// ¸¸µé¼ö ÀÖ´Â ·£¼±ÀÇ °¹¼ö°¡ ÇÊ¿äÇÑ °¹¼öº¸´Ù °°°Å³ª ¸¹Àº °æ¿ì
-				left = key;					// ÇöÀç Å°°ªÀÌ ·£¼±ÀÇ ÃÖ´ë ±æÀÌÀÎ °æ¿ìµµ ÀÖÀ¸´Ï Å°°ªÀ» »ì·Á¼­ ¿À¸¥ÂÊ¹üÀ§ Å½»ö
-			}
-		}
-		
-		System.out.println(key);
-	}
+      while (left <= right) {         // left, right, keyê°’ì´ ê°™ì€ ê²½ìš° í™•ì¸í•´ì•¼í•¨.
+         key = (left + right) / 2;
+         long sum = 0;               // ê¸¸ì´ê°€ 1ì§œë¦¬ ëœì„ ì˜ ê²½ìš° sumì´ intë¡œ ë¶€ì¡±í•¨.
+         
+         for (int i = 0; i < c.length; i++) {      // ëœì„ ì˜ ê¸¸ì´ê°€ keyê°’ì¼ë•Œ ë§Œë“¤ìˆ˜ ìˆëŠ” ëœì„ ì˜ ê°¯ìˆ˜
+            sum += (c[i] / key);
+         }
+         
+         
+         if ((right-left) <= 1) {                     // ì•„ë˜ ì¡°ê±´ì—ì„œ left = keyë¡œ ì„¤ì •í–ˆê¸°ë•Œë¬¸ì— ì¢…ë£Œì¡°ê±´ì„ ì„¤ì •í•´ì¤˜ì•¼í•¨.
+            int sumr = 0;
+            for (int i = 0; i < c.length; i++) {      // leftì™€ rightê°’ì´ ê°™ê±°ë‚˜ 1ì°¨ì´ ì¼ë•Œ 
+               sumr += (c[i] / right);
+            }
+            if (n <= sumr) {                        // rightë¥¼ í‚¤ê°’ìœ¼ë¡œ í–ˆì„ë•Œ ì¡°ê±´ì„ ë§Œì¡±í•˜ë©´ 
+               key = right;                        // í‚¤ê°’ì— rightë¥¼ ë„£ê³  íƒìƒ‰ì¢…ë£Œ
+               break;   
+            }
+            break;                                 // rightê°€ ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ ì•Šìœ¼ë©´ keyê°’ ê·¸ëŒ€ë¡œ íƒìƒ‰ì¢…ë£Œ
+         }
+         
+         if (sum < n) {            // ë§Œë“¤ìˆ˜ ìˆëŠ” ëœì„ ì˜ ê°¯ìˆ˜ê°€ í•„ìš”í•œ ê°¯ìˆ˜ë³´ë‹¤ ì ì„ê²½ìš°
+            right = key - 1;      // ì™¼ìª½ ë²”ìœ„ì— ëŒ€í•´ ë‹¤ì‹œ íƒìƒ‰, ëœì„ ì˜ ê¸¸ì´ë¥¼ ì¤„ì—¬ ê°¯ìˆ˜ ëŠ˜ë¦¬ê¸°
+         } else if (sum >= n) {      // ë§Œë“¤ìˆ˜ ìˆëŠ” ëœì„ ì˜ ê°¯ìˆ˜ê°€ í•„ìš”í•œ ê°¯ìˆ˜ë³´ë‹¤ ê°™ê±°ë‚˜ ë§ì€ ê²½ìš°
+            left = key;               // í˜„ì¬ í‚¤ê°’ì´ ëœì„ ì˜ ìµœëŒ€ ê¸¸ì´ì¸ ê²½ìš°ë„ ìˆìœ¼ë‹ˆ í‚¤ê°’ì„ ì‚´ë ¤ì„œ ì˜¤ë¥¸ìª½ë²”ìœ„ íƒìƒ‰
+         }
+      }
+      
+      System.out.println(key);
+   }
 }

@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Set;
 
 /*
-ÁØ±Ô´Â ¼ýÀÚ Ä«µå NÀåÀ» °¡Áö°í ÀÖ´Ù. ¼ýÀÚ Ä«µå¿¡´Â Á¤¼ö°¡ ÇÏ³ª ÀûÇôÀÖ´Âµ¥,
-ÀûÇôÀÖ´Â ¼ö´Â -2^62º¸´Ù Å©°Å³ª °°°í, 2^62º¸´Ù ÀÛ°Å³ª °°´Ù.
-ÁØ±Ô°¡ °¡Áö°í ÀÖ´Â Ä«µå°¡ ÁÖ¾îÁ³À» ¶§, °¡Àå ¸¹ÀÌ °¡Áö°í ÀÖ´Â Á¤¼ö¸¦ ±¸ÇÏ´Â ÇÁ·Î±×·¥À» ÀÛ¼ºÇÏ½Ã¿À. 
-¸¸¾à, °¡Àå ¸¹ÀÌ °¡Áö°í ÀÖ´Â Á¤¼ö°¡ ¿©·¯ °¡Áö¶ó¸é, ÀÛÀº °ÍÀ» Ãâ·ÂÇÑ´Ù.
+ì¤€ê·œëŠ” ìˆ«ìž ì¹´ë“œ Nìž¥ì„ ê°€ì§€ê³  ìžˆë‹¤. ìˆ«ìž ì¹´ë“œì—ëŠ” ì •ìˆ˜ê°€ í•˜ë‚˜ ì í˜€ìžˆëŠ”ë°,
+ì í˜€ìžˆëŠ” ìˆ˜ëŠ” -2^62ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ê³ , 2^62ë³´ë‹¤ ìž‘ê±°ë‚˜ ê°™ë‹¤.
+ì¤€ê·œê°€ ê°€ì§€ê³  ìžˆëŠ” ì¹´ë“œê°€ ì£¼ì–´ì¡Œì„ ë•Œ, ê°€ìž¥ ë§Žì´ ê°€ì§€ê³  ìžˆëŠ” ì •ìˆ˜ë¥¼ êµ¬í•˜ëŠ” í”„ë¡œê·¸ëž¨ì„ ìž‘ì„±í•˜ì‹œì˜¤. 
+ë§Œì•½, ê°€ìž¥ ë§Žì´ ê°€ì§€ê³  ìžˆëŠ” ì •ìˆ˜ê°€ ì—¬ëŸ¬ ê°€ì§€ë¼ë©´, ìž‘ì€ ê²ƒì„ ì¶œë ¥í•œë‹¤.
 */
 
 public class p11652 {
@@ -25,12 +25,12 @@ public class p11652 {
 		long max = Long.MIN_VALUE;
 		long min = Long.MAX_VALUE;
 
-		// set¿¡ ÇÏ³ª¾¿ ÀÔ·Â
-		// map<¼ýÀÚ, °¹¼ö>¿¡ °°ÀÌ ÀÔ·Â
-		// Áßº¹ÀÏ°æ¿ì mapÀÇ value°ª 1Áõ°¡
-		// set¿¡ °ªµé ÇÏ³ª¾¿ ²¨³»¿Í¼­
-		// mapÀÇ value°ªµé ºñ±³ÇÏ¿©
-		// value ÃÖ´ñ°ª°ú ±×¶§ Å°°ª ÀúÀå
+		// setì— í•˜ë‚˜ì”© ìž…ë ¥
+		// map<ìˆ«ìž, ê°¯ìˆ˜>ì— ê°™ì´ ìž…ë ¥
+		// ì¤‘ë³µì¼ê²½ìš° mapì˜ valueê°’ 1ì¦ê°€
+		// setì— ê°’ë“¤ í•˜ë‚˜ì”© êº¼ë‚´ì™€ì„œ
+		// mapì˜ valueê°’ë“¤ ë¹„êµí•˜ì—¬
+		// value ìµœëŒ“ê°’ê³¼ ê·¸ë•Œ í‚¤ê°’ ì €ìž¥
 
 		for (int i = 0; i < n; i++) {
 			long num = Long.parseLong(br.readLine());
