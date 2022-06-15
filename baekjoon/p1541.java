@@ -1,60 +1,46 @@
 import java.io.*;
 import java.util.*;
 
+//	https://www.acmicpc.net/problem/1541
+
 public class p1541 {
 
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String s = br.readLine();
-		Stack<Integer> stack = new Stack<>();
-		int st = 0;
-		int ed;
+		int index = -1;
 		int result = 0;
-		int sum = -1;
-		for (int i = 0; i < s.length(); i++) {
-			result = 0;
-			if (s.charAt(i) == '+') {
-				ed = i;
-				stack.push(Integer.parseInt(s.substring(st, ed)));
-				st = i + 1;
-			} else if (s.charAt(i) == '-') {
-				ed = i;
-				stack.push(Integer.parseInt(s.substring(st, ed)));
-				st = i + 1;
-				while (!stack.isEmpty()) {
-					result += stack.pop();
-				}
-				sum = result;
-				result = 0;
-				String str = s.substring(i + 1, s.length());
-				System.out.println(str);
-				StringTokenizer strto = new StringTokenizer(str, "+-");
-				while (strto.hasMoreTokens()) {
-					stack.push(Integer.parseInt(strto.nextToken()));
-				}
-				break;
-			
+		int sum = 0;
 
-			} else if (i == s.length() - 1) {
-				stack.push(Integer.parseInt(s.substring(st, s.length())));
-				while (!stack.isEmpty()) {
-					result += stack.pop();
-				}
-				if (sum == -1) {
-					sum = result;
-				} else {
-					sum -= result;
-				}
+		// 첫번째 -의 인덱스 값을 저장함
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) == '-') {
+				index = i;
+				break;
 			}
 		}
 
-		System.out.println(sum);
-		while (!stack.isEmpty()) {
-			result += stack.pop();
+		// -가 없으면 그냥 다 더하고
+		// -있으면 -전으로 숫자 다 더하고
+		// -이후 숫자 다 더해서
+		// 앞 숫자에서 뒷 숫자뺌
+		if (index == -1) {
+			StringTokenizer st = new StringTokenizer(s, "+-");
+			while (st.hasMoreTokens()) {
+				sum += Integer.parseInt(st.nextToken());
+			}
+		} else {
+			StringTokenizer st = new StringTokenizer(s.substring(0, index), "+-");
+			while (st.hasMoreTokens()) {
+				sum += Integer.parseInt(st.nextToken());
+			}
+			st = new StringTokenizer(s.substring(index, s.length()), "+-");
+			while (st.hasMoreTokens()) {
+				result += Integer.parseInt(st.nextToken());
+			}
+			sum -= result;
 		}
-		System.out.println(result);
-		sum -= result;
 
 		System.out.println(sum);
 
