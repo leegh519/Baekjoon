@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Dp_11053 {
+//	https://www.acmicpc.net/problem/11053
+//	가장 긴 증가하는 부분 수열
+
+public class Dp_11053_re {
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -27,7 +30,7 @@ public class Dp_11053 {
 			}
 			max = Math.max(max, dp[i]);
 		}
-		System.out.println(max+1);
+		System.out.println(max + 1);
 
 	}
 
