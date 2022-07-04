@@ -45,6 +45,7 @@ public class BackTracking_15649_re {
 				func(k + 1);
 				visit[i] = false;
 			}
+			visit[i]=true;
 		}
 
 	}
