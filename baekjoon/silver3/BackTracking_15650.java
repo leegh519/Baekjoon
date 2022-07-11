@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 //	백트래킹
 //	재귀함수를 이용
 
-public class Recur_15650 {
+public class BackTracking_15650 {
 
 	static int n, m;
 	static boolean[] visit;
