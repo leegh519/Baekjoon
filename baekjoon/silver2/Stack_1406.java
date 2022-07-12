@@ -5,55 +5,48 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.Stack;
 
-//	String 시간초과남
-//	linkedlist 써보자
+//	https://www.acmicpc.net/problem/1406
+//	stack 2개를 이용해서 품
+//	linkedlist에 iterator를 사용하는 방법도 있음
 
-public class String_1406 {
+public class Stack_1406 {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		List<Character> list = new LinkedList<>();
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		Stack<Character> s1 = new Stack<>();
+		Stack<Character> s2 = new Stack<>();
 		String str = br.readLine();
 		for (int i = 0; i < str.length(); i++) {
-			list.add(str.charAt(i));
+			s1.push(str.charAt(i));
 		}
 		int m = Integer.parseInt(br.readLine());
-		int cursor = list.size() - 1;
 
 		for (int i = 0; i < m; i++) {
 			String s = br.readLine();
 			if (s.charAt(0) == 'L') {
-				if (cursor > 0) {
-					cursor--;
+				if (!s1.isEmpty()) {
+					s2.push(s1.pop());
 				}
 			} else if (s.charAt(0) == 'D') {
-				if (cursor < list.size() - 1) {
-					cursor++;
+				if (!s2.isEmpty()) {
+					s1.push(s2.pop());
 				}
 			} else if (s.charAt(0) == 'B') {
-				if (cursor >= 0) {
-					list.remove(cursor);
-					if (cursor == list.size())
-						cursor--;
+				if (!s1.isEmpty()) {
+					s1.pop();
 				}
 			} else if (s.charAt(0) == 'P') {
-				list.add(cursor+1, s.charAt(2));
-				cursor++;
+				s1.push(s.charAt(2));
 			}
-			for (int j = 0; j < list.size(); j++) {
-				bw.write(list.get(j));
-			}
-			System.out.println(cursor);
-			bw.write("\n");
-			bw.flush();
 		}
-		for (int i = 0; i < list.size(); i++) {
-			bw.write(list.get(i));
+		while(!s1.isEmpty()) {
+			s2.push(s1.pop());
+		}
+		while(!s2.isEmpty()){
+			bw.write(s2.pop());
 		}
 		bw.flush();
 		bw.close();
