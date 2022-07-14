@@ -21,9 +21,12 @@ public class Dp_11053_re {
 		}
 
 		dp[0] = 0;
-		int max = Integer.MIN_VALUE;
+		int max = 0;
 		for (int i = 1; i < n; i++) {
 			for (int j = 0; j < i; j++) {
+				//	i번째요소일때
+				//	0~i-1번째 순회하면서 i번째가 더 크면
+				//	dp[j]+1
 				if (arr[i] > arr[j]) {
 					dp[i] = Math.max(dp[j] + 1, dp[i]);
 				}

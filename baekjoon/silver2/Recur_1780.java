@@ -1,14 +1,13 @@
 package silver2;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
-public class P_1780 {
+//	https://www.acmicpc.net/problem/1780
+//	분할정복, 재귀
 
-	static int cnt;
+public class Recur_1780 {
+
 	static int[] arr = new int[3];
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -24,16 +23,17 @@ public class P_1780 {
 			}
 		}
 
-		
-
 		func(n, paper, 0, 0);
 
 		System.out.println(arr[0] + "\n" + arr[1] + "\n" + arr[2]);
 	}
 
+	// n: 분할단위
+	// x, y: 검색시작위치
 	private static void func(int n, int[][] paper, int x, int y) {
+
+		// 최소단위로 분할한 경우
 		if (n == 1) {
-			System.out.println(x+" "+y);
 			if (paper[x][y] == -1) {
 				arr[0]++;
 			} else if (paper[x][y] == 0) {
@@ -43,15 +43,16 @@ public class P_1780 {
 			}
 			return;
 		}
+		// 모든 수가 같은 수 인지 check
 		if (!check(paper, n, x, y)) {
-			for (int i = 0; i < n; i += (n / 3)) {
-				for (int j = 0; j < n; j += (n / 3)) {
+
+			// 분할해서 재귀적으로 탐색
+			for (int i = x; i < x + n; i += (n / 3)) {
+				for (int j = y; j < y + n; j += (n / 3)) {
 					func(n / 3, paper, i, j);
 				}
 			}
-
 		}
-
 	}
 
 	private static boolean check(int[][] paper, int n, int x, int y) {
@@ -75,5 +76,4 @@ public class P_1780 {
 
 		return true;
 	}
-
 }
