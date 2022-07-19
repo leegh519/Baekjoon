@@ -21,20 +21,7 @@ public class p2560 {
 			}
 		}
 		System.out.println(sum);
-		int timer=0;
-		method1(timer);
 
 	}
-	private static void method1(int t) {
-		//int b=5;
-		method2(t);
-	}
 	
-	
-	
-	
-	private static void method2(int a) {
-		a=3;
-	}
-
 }
